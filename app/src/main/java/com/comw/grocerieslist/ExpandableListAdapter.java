@@ -13,18 +13,18 @@ import android.widget.TextView;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<String> category;
-    private HashMap<String, List<String>> item;
+    private List<String> categories;
+    private HashMap<String, List<String>> items;
 
-    public ExpandableListAdapter(Context context, List<String> category, HashMap<String, List<String>> item) {
+    public ExpandableListAdapter(Context context, List<String> categories, HashMap<String, List<String>> items) {
         this.context = context;
-        this.category = category;
-        this.item = item;
+        this.categories = categories;
+        this.items = items;
     }
 
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
-        return this.item.get(this.category.get(listPosition))
+        return this.items.get(this.categories.get(listPosition))
                 .get(expandedListPosition);
     }
 
@@ -39,7 +39,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.activity_main, null);
+            convertView = layoutInflater.inflate(R.layout.grocery_item, null);
         }
         TextView expandedListTextView = (TextView) convertView.findViewById(R.id.listItem);
         expandedListTextView.setText(expandedListText);
@@ -48,18 +48,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.item.get(this.category.get(listPosition))
+        return this.items.get(this.categories.get(listPosition))
                 .size();
     }
 
     @Override
     public Object getGroup(int listPosition) {
-        return this.category.get(listPosition);
+        return this.categories.get(listPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return this.category.size();
+        return this.categories.size();
     }
 
     @Override
@@ -74,10 +74,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.activity_main, null);
+            convertView = layoutInflater.inflate(R.layout.grocery_category, null);
         }
         TextView listTitleTextView = (TextView) convertView
-                .findViewById(R.id.listItem);
+                .findViewById(R.id.categoryTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
         return convertView;

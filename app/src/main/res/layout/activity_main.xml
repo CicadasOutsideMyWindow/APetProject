@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <!-- the following expandable list view UI requires some tuning-->
     <ExpandableListView
         android:id="@+id/expandableListView"
@@ -15,43 +14,5 @@
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp" />
-
-    <!--<TextView-->
-        <!--android:id="@+id/listItem1"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:text="Bananas"-->
-        <!--android:textColor="@android:color/holo_green_dark"-->
-        <!--android:textSize="28sp" />-->
-
-    <TextView
-        android:id="@+id/categoryTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textColor="@android:color/black"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
-    <TextView
-        android:id="@+id/listItem"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
-    <!--<CheckBox-->
-        <!--android:id="@+id/checkBox"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginEnd="32dp"-->
-        <!--android:typeface="sans"-->
-        <!--android:visibility="visible"-->
-        <!--android:onClick="onCheckboxClicked"/>-->
 
 </RelativeLayout>
