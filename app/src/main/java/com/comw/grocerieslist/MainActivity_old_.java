@@ -2,8 +2,12 @@ package com.comw.grocerieslist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,38 +49,34 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
+    public List<GroceryItem> saveNewList(View view) {
+
+        setContentView(R.layout.activity_main_old);
+        final Button button = findViewById(R.id.save_list_button);
+        LinearLayout ll = (LinearLayout)findViewById(R.id.ll);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ListView listView = new ListView(R.layout.activity_main_old);
+                listView.setAdapter();
+                Log.i("Grocery items list: ", groceryItems.toString());  // TODO: what?!
+            }
+        });
+
+        return groceryItems;
+    }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main_old);
             expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-            listItems = MockData.getData();
+            listItems = MockData.getData(); // TODO: sort this map
             categoryTitles = new ArrayList<String>(listItems.keySet());
             expandableListAdapter = new ExpandableListAdapter(this, categoryTitles, listItems);
             expandableListView.setAdapter(expandableListAdapter);
-
-            final List<GroceryItem> currentGroceryList = new ArrayList<GroceryItem>();
-
-            expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-                @Override
-                public void onGroupExpand(int groupPosition) {
-                    Toast.makeText(getApplicationContext(),
-                            categoryTitles.get(groupPosition) + " List Expanded.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-                @Override
-                public void onGroupCollapse(int groupPosition) {
-                    Toast.makeText(getApplicationContext(),
-                            categoryTitles.get(groupPosition) + " List Collapsed.",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-            });
 
             expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
                 @Override
@@ -96,12 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     //TODO:
                     // grey out
                     // make not clickable (?)
-                    // add to the current list
 
                     System.out.println(Arrays.asList(groceryItems));
-
-
-
                     return false;
                 }
             });
